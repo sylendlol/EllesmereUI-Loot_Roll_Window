@@ -41,7 +41,7 @@ How the numbers look:
 - The numbers stay readable on disabled buttons (for example Need on an item you cannot use).
 
 ### Rolled counter
-A `3/5` counter shows how many have chosen out of the whole group. You can place it under or beside
+A `4/5` counter shows how many have chosen out of the whole group. You can place it under or beside
 the Pass button, above, below, left or right of the window, or inside the window's top right or
 bottom right corner, then fine-tune it with X/Y offsets and text size. The chosen number is drawn
 in the **Counter Color** (see [Colors](#colors)), the total in light grey.
@@ -49,7 +49,7 @@ in the **Counter Color** (see [Colors](#colors)), the total in light grey.
 ### Who chose what
 Hover a button and its tooltip lists the players who chose it:
 
-- **Header line:** `Need 1 / 5`, in the **Tooltip Header Color** (see [Colors](#colors)).
+- **Header line:** `Need 2 / 5`, in the **Tooltip Header Color** (see [Colors](#colors)).
 - **In a party:** names in class color, with a "(you)" tag on yourself and a "(Transmog)" tag where
   it applies.
 - **Waiting:** who has not chosen yet (can be turned off).
@@ -67,8 +67,8 @@ Three parts use EllesmereUI's **UI Accent Color** by default. Each has its own s
 | Setting | Colors | Default |
 |---|---|---|
 | **Badge Frame Color** | The 1px frame of the count badges, while Color by Button is off and the style is Badge | UI Accent Color |
-| **Counter Color** | The chosen number of the `3/5` counter | UI Accent Color |
-| **Tooltip Header Color** | The `Need 1 / 5` line in the button tooltip | UI Accent Color |
+| **Counter Color** | The chosen number of the `4/5` counter | UI Accent Color |
+| **Tooltip Header Color** | The `Need 2 / 5` line in the button tooltip | UI Accent Color |
 
 Colors that are not tied to the accent:
 
