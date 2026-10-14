@@ -1,0 +1,16 @@
+## Interface: 120000, 120001, 120005, 120007, 120100, 120105, 16001
+## Title: |cff0cd29fEllesmereUI|r Loot Roll Window
+## Category: |cff0cd29fEllesmere|rUI
+## Group: EllesmereUI
+## Notes: Shows on the Need / Greed / Pass buttons how many group members chose each, and who (class colored) in the tooltip.
+## Author: Dworak
+## Version: 1.0.0
+## Dependencies: EllesmereUI, EllesmereUIDworak
+## SavedVariables: EllesmereUILootRollDB
+## IconTexture: Interface\AddOns\EllesmereUI\media\eg-logo.tga
+
+# Roll tracking (loot history + chat), counts and tooltips on the roll popups
+EllesmereUILootRoll.lua
+
+# Dworak > Loot Roll Window page with the live preview
+EllesmereUILootRoll_Options.lua
