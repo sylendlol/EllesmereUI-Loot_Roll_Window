@@ -360,8 +360,38 @@ local function BuildPage(pageName, parent, yOffset)
     );  y = y - h
 
     _, h = W:DualRow(parent, y,
-        Slider("countX", "Count X Offset", -20, 20, noBadges, why("not Summary Line")),
-        Slider("countY", "Count Y Offset", -20, 20, noBadges, why("not Summary Line"))
+        Slider("countX", "Count X Offset", -20, 20, noBadges, why("not Summary Line"),
+            "Moves every number. Separate Positions adds a per-button offset on top."),
+        Slider("countY", "Count Y Offset", -20, 20, noBadges, why("not Summary Line"),
+            "Moves every number. Separate Positions adds a per-button offset on top.")
+    );  y = y - h
+
+    local function sepOff() return noBadges() or not ns.Get("countSeparate") end
+    local function sepWhy()
+        if noBadges() then return why("not Summary Line")() end
+        return "Separate Positions"
+    end
+
+    _, h = W:DualRow(parent, y,
+        Relayout(Toggle("countSeparate", "Separate Positions",
+            "Each button's number gets its own X / Y offset, added to the Count X / Y Offset above.",
+            noBadges, why("not Summary Line"))),
+        BLANK()
+    );  y = y - h
+
+    _, h = W:DualRow(parent, y,
+        Slider("needX", "Need X Offset", -30, 30, sepOff, sepWhy),
+        Slider("needY", "Need Y Offset", -30, 30, sepOff, sepWhy)
+    );  y = y - h
+
+    _, h = W:DualRow(parent, y,
+        Slider("greedX", "Greed X Offset", -30, 30, sepOff, sepWhy, "Also moves the Transmog number."),
+        Slider("greedY", "Greed Y Offset", -30, 30, sepOff, sepWhy, "Also moves the Transmog number.")
+    );  y = y - h
+
+    _, h = W:DualRow(parent, y,
+        Slider("passX", "Pass X Offset", -30, 30, sepOff, sepWhy),
+        Slider("passY", "Pass Y Offset", -30, 30, sepOff, sepWhy)
     );  y = y - h
 
     _, h = W:DualRow(parent, y,

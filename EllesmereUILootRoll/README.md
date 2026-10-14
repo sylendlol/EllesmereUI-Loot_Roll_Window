@@ -3,7 +3,8 @@
 Shows on the group loot roll popup how many of your group chose **Need**, **Greed** and **Pass**,
 and who chose what, in class color. Built for **WoW Forever** as a plugin for EllesmereUI. It lives
 in the **Dworak** section of the EllesmereUI settings panel and matches the look of the rest of
-the suite.
+the suite: it follows your **UI Accent Color** out of the box, and every accent-colored part can be
+given its own color.
 
 It is a standalone addon: no EllesmereUI file is changed, so EllesmereUI updates never overwrite it.
 It does not replace Blizzard's roll popup either. Rolling, the timer and the Need roll animation
@@ -23,22 +24,30 @@ update live as people choose. Pick one of four layouts:
 - **Summary Line:** no numbers on the buttons. One `N 2 · G 1 · P 1` line instead, which you can
   place above, below or beside the window, under the Pass button, or inside the window.
 
-Other count settings:
+How the numbers look:
 
-- **Color by Button** (on by default): each number and its frame take the button's color (Need
-  white, Greed gold, Pass red). When it is off, numbers are white in UI Accent Color (or custom color) frames.
 - **Style:** a dark badge with a 1px frame, or a plain outlined number.
-- Text size, X/Y offsets, and **Hide Zero** (no number on a button nobody chose).
+- **Color by Button** (on by default): each number and its badge frame take the button's own color
+  (Need white, Greed gold, Transmog purple, Pass red), so it is clear at a glance which button a
+  number belongs to. This also colors the numbers of the Summary Line.
+- With Color by Button off, the numbers are white and the badge frames use the **Badge Frame
+  Color** (see [Colors](#colors)).
+- Text size and **Hide Zero** (no number on a button nobody chose).
+- **Position:** Count X / Y Offset moves every number together. Turn on **Separate Positions** to
+  give the Need, Greed (and Transmog) and Pass numbers their own X / Y offsets as well, added on top
+  of the shared one.
 - The numbers stay readable on disabled buttons (for example Need on an item you cannot use).
 
 ### Rolled counter
 A `3/5` counter shows how many have chosen out of the whole group. You can place it under or beside
 the Pass button, above, below, left or right of the window, or inside the window's top right or
-bottom right corner, then fine-tune it with X/Y offsets and text size.
+bottom right corner, then fine-tune it with X/Y offsets and text size. The chosen number is drawn
+in the **Counter Color** (see [Colors](#colors)), the total in light grey.
 
 ### Who chose what
 Hover a button and its tooltip lists the players who chose it:
 
+- **Header line:** `Need 1 / 5`, in the **Tooltip Header Color** (see [Colors](#colors)).
 - **In a party:** names in class color, with a "(you)" tag on yourself and a "(Transmog)" tag where
   it applies.
 - **Waiting:** who has not chosen yet (can be turned off).
@@ -47,18 +56,41 @@ Hover a button and its tooltip lists the players who chose it:
 - Class colors follow EllesmereUI's class color settings.
 
 ### Colors
-Everything that uses EllesmereUI's **UI Accent Color** can be given its own color instead:
+Three parts use EllesmereUI's **UI Accent Color** by default. Each has its own setting in the
+**Colors** section, with two choices:
 
-- **Badge Frame Color:** the frame of the count badges (while Color by Button is off).
-- **Counter Color:** the chosen number of the `3/5` counter.
-- **Tooltip Header Color:** the `Need 1 / 5` line in the button tooltip.
+- **UI Accent Color:** follows Global Settings > UI Accent Color, and repaints live when you change it.
+- **Custom:** any color, from the color picker next to the setting.
 
-Each one is either **UI Accent Color** (follows it live) or **Custom** with its own color picker.
+| Setting | Colors | Default |
+|---|---|---|
+| **Badge Frame Color** | The 1px frame of the count badges, while Color by Button is off and the style is Badge | UI Accent Color |
+| **Counter Color** | The chosen number of the `3/5` counter | UI Accent Color |
+| **Tooltip Header Color** | The `Need 1 / 5` line in the button tooltip | UI Accent Color |
+
+Colors that are not tied to the accent:
+
+- **Button colors** (Color by Button): Need white, Greed gold, Transmog purple, Pass red.
+- **Player names:** class colors from EllesmereUI.
+- **Waiting list and labels:** grey.
+
+A color setting that has no effect with your other choices (for example Badge Frame Color while
+Color by Button is on) is greyed out, and its tooltip says which setting it depends on.
 
 ### Live preview
-The top of the settings page shows a roll popup with sample choices. Every setting shows up there
-as you change it, and hovering its buttons shows the real tooltip. Switch the preview between a
-**party** and a **raid** sample.
+The top of the settings page shows a roll popup with sample choices. Every setting, colors
+included, shows up there as you change it, and hovering its buttons shows the real tooltip. Switch
+the preview between a **party** and a **raid** sample.
+
+## Settings overview
+
+| Section | Settings |
+|---|---|
+| **Loot Roll Window** | Enable, Preview Group (party / raid sample) |
+| **Counts** | Show Counts, Count Layout, Color by Button, Hide Zero, Count Style, Count Text Size, Button Corner, Count X / Y Offset, Separate Positions, Need / Greed / Pass X / Y Offset, Summary Position, Summary X / Y Offset |
+| **Rolled Counter** | Show Rolled Counter, Counter Text Size, Counter Position, Counter X / Y Offset |
+| **Tooltip** | Show Choices in Tooltip, Show Waiting Players, Names in Raid |
+| **Colors** | Badge Frame Color, Counter Color, Tooltip Header Color (each: UI Accent Color or Custom) |
 
 ## Where the data comes from
 
@@ -99,7 +131,7 @@ The folder must be named exactly `EllesmereUILootRoll`.
 
 ## Settings and saved data
 
-Settings are account-wide and saved in `EllesmereUILootRollDB`
+Settings, custom colors included, are account-wide and saved in `EllesmereUILootRollDB`
 (`WTF\Account\<account>\SavedVariables\EllesmereUILootRoll.lua`). The **Reset** button at the bottom
 of the settings page restores the defaults.
 
@@ -108,8 +140,9 @@ of the settings page restores the defaults.
 | File | Contents |
 |---|---|
 | `EllesmereUILootRoll.toc` | Addon manifest |
-| `EllesmereUILootRoll.lua` | Roll tracking (loot history and chat), counts, rolled counter, tooltip lines, `/lootroll dump` |
+| `EllesmereUILootRoll.lua` | Roll tracking (loot history and chat), counts, rolled counter, colors, tooltip lines, `/lootroll dump` |
 | `EllesmereUILootRoll_Options.lua` | Settings page with the live preview |
+| `README.md` | This file |
 
 ## Credits
 

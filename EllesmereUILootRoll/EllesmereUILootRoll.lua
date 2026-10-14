@@ -38,8 +38,10 @@ local DEFAULTS = {
     countStyle  = "BADGE",     -- BADGE (framed box) / TEXT (outlined number)
     countSize   = 12,
     countPos    = "BOTTOMRIGHT", -- CORNER layout only
-    countX      = 0,
+    countX      = 0,           -- moves every number
     countY      = 0,
+    countSeparate = false,     -- per-button offsets on top of countX / countY
+    needX = 0, needY = 0, greedX = 0, greedY = 0, passX = 0, passY = 0,
     summaryPos  = "FRAME_BOTTOM", -- SUMMARY layout: where the line sits
     summaryX    = 0,
     summaryY    = 0,
@@ -476,8 +478,18 @@ local OUTSIDE = {
     pass  = { "LEFT", "RIGHT", 2, 0 },
 }
 
+-- Button key -> its own offset settings (Transmog shares Greed's).
+local OFFSET_KEY = { need = "need", greed = "greed", tmog = "greed", pass = "pass" }
+
 local function PlaceBadge(b)
     local layout, x, y = ns.Get("countLayout"), ns.Get("countX"), ns.Get("countY")
+    if ns.Get("countSeparate") then
+        local k = OFFSET_KEY[b.key]
+        if k then
+            x = x + ns.Get(k .. "X")
+            y = y + ns.Get(k .. "Y")
+        end
+    end
     b:ClearAllPoints()
     if layout == "INSIDE" then
         b:SetPoint("BOTTOMRIGHT", b.button, "BOTTOMRIGHT", -1 + x, 1 + y)
